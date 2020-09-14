@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: linear-gradient(43deg, #ff8800, #a89700);
+    color: white;
+    font-family: sans-serif;
+    min-height: 100vh;
+}
+
+header {
+    font-size: 1.5rem;
+    font-weight: 900;
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    min-height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.h3 {
+    
+}
+
+.btns {
+    min-height: 10vh;
+}
+
+#rpsButton {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    display: flex 1;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#rpsButton:hover {
+    color: white;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    border: none;
+    background-color: #ff8800;
+    transition: all .2s ease;
+}
