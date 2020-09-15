@@ -11,7 +11,7 @@ body {
 }
 
 header {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-weight: 900;
     min-height: 20vh;
     display: flex;
@@ -20,7 +20,7 @@ header {
 }
 
 #container {
-    min-height: 10vh;
+    min-height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,27 +31,22 @@ header {
     
 }
 
-.btns {
+button {
     min-height: 10vh;
-}
-
-#rpsButton {
-    padding: 0.5rem;
+    padding: .75rem;
     font-size: 1.5rem;
+    font-weight: 900;
+    color: #c48715;
     border: none;
     border-radius: 5px;
-    background-color: white;
-    display: flex 1;
-    justify-content: center;
-    align-items: center;
-
+    transition: all 0.2s ease;
 }
 
-#rpsButton:hover {
+button:hover {
     color: white;
-    padding: 0.5rem;
+    padding: 0.75rem;
     font-size: 1.5rem;
     border: none;
-    background-color: #ff8800;
+    background-color: #c48715;
     transition: all .2s ease;
 }
