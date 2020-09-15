@@ -1,27 +1,24 @@
-document.addEventListener('DOMContentLoaded', game)
-
 function computerPlay() {
   let ranNumber = Math.ceil(Math.random() * 3);
 
-  if (ranNumber == 3) {
+  if (ranNumber === 3) {
     return 'rock';
-  } else if (ranNumber == 2) {
+  } else if (ranNumber === 2) {
     return 'paper';
-  } else if (ranNumber == 1) {
+  } else if (ranNumber === 1) {
     return 'scissors';
   } else {
     return 'Nope, not working'
   }
 }
 
-function playRound() {
-  let playerSelection = document.querySelectorAll('button');
-    playerSelection.forEach((button) => {
-      button.addEventListener('click', () => {
-        console.log(button.id);
-        return button.id;
-      })
-    });
+let buttons = document.querySelectorAll('button');
+  buttons.forEach((button) => {
+  button.addEventListener('click', playRound)
+});
+
+function playRound(e) {
+  let playerSelection = buttons.id;
   
   let computerSelection = computerPlay()
 
@@ -49,26 +46,27 @@ function playRound() {
 function game() {
   for (let i = 0; i < 5; i++) {
     let outcome = playRound()
-    if (outcome == "win") {
+    if (outcome == 'win') {
       playerScore++;
-      console.log("You win this round!");
-    } else if (outcome == "lose") {
+      console.log('You win!');
+    } else if (outcome == 'lose') {
       computerScore++;
-      console.log("You lose this round!")
+      console.log('You lose!')
     } else
-      console.log("It's a draw!");
+      console.log('It\'s a draw!');
   }
-  for (let j=0; j < 5; j++) {
-    if (j <4) continue;
-
-    if (playerScore > computerScore) {
-    console.log("GAME! You won! " + playerScore + " to " + computerScore);
-  } else if (playerScore < computerScore) {
-    console.log("GAME! You lost! " + playerScore + " to " + computerScore);
-  } else
-    console.log("GAME! It's a draw! " + playerScore + " to " + computerScore);
-    console.log("Please refresh page!");
-  }
+//  for (let j=0; j < 5; j++) {
+//    if (j <4) continue;
+//
+//    if (playerScore > computerScore) {
+//    console.log("GAME! You won! " + playerScore + " to " + computerScore);
+//  } else if (playerScore < computerScore) {
+//    console.log("GAME! You lost! " + playerScore + " to " + computerScore);
+//  } else
+//    console.log("GAME! It's a draw! " + playerScore + " to " + computerScore);
+//    console.log("Please refresh page!");
+//  }
 }
 let playerScore = 0;
 let computerScore = 0;
+game();
