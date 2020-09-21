@@ -1,5 +1,5 @@
 function computerPlay() {
-  let ranNumber = Math.ceil(Math.random() * 3);
+  const ranNumber = Math.ceil(Math.random() * 3);
 
   if (ranNumber === 3) {
     return 'rock';
@@ -12,61 +12,63 @@ function computerPlay() {
   }
 }
 
-let buttons = document.querySelectorAll('button');
+let playerScore = 0;
+let computerScore = 0;
+
+const buttons = document.querySelectorAll('#btns');
   buttons.forEach((button) => {
   button.addEventListener('click', playRound)
 });
 
+const roundResults = document.querySelector('#results');
+const p = document.createElement('p');
+p.classList.add('result');
+roundResults.appendChild(p);
+const scores = document.createElement('p');
+scores.classList.add('tally');
+roundResults.appendChild(scores);
+
 function playRound(e) {
-  let playerSelection = buttons.id;
-  
-  let computerSelection = computerPlay()
+  const playerSelection = e.target.id;
+  const computerSelection = computerPlay();
 
-   if (playerSelection == 'rock' && computerSelection == 'rock') {
-     return 'draw';
-   } else if (playerSelection == 'rock' && computerSelection == 'paper') {
-     return 'lose'
-   } else if (playerSelection == 'rock' && computerSelection == 'scissors') {
-     return 'win'
-   } else if (playerSelection == 'paper' && computerSelection == 'paper') {
-     return 'draw'
-   } else if (playerSelection == 'paper' && computerSelection == 'rock') {
-     return 'win'
-   } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
-     return 'lose'
-   } else if (playerSelection == 'scissors' && computerSelection == 'scissors') {
-     return 'draw'
-   } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-     return 'lose'
-   } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-     return 'win'
-   }
-}
-
-function game() {
-  for (let i = 0; i < 5; i++) {
-    let outcome = playRound()
-    if (outcome == 'win') {
-      playerScore++;
-      console.log('You win!');
-    } else if (outcome == 'lose') {
+   if (playerSelection === 'rock' && computerSelection === 'rock') {
+      p.textContent = 'Draw!';
+    } else if (playerSelection === 'rock' && computerSelection === 'paper') {
+      p.textContent = 'Loss';
       computerScore++;
-      console.log('You lose!')
-    } else
-      console.log('It\'s a draw!');
-  }
-//  for (let j=0; j < 5; j++) {
-//    if (j <4) continue;
-//
-//    if (playerScore > computerScore) {
-//    console.log("GAME! You won! " + playerScore + " to " + computerScore);
-//  } else if (playerScore < computerScore) {
-//    console.log("GAME! You lost! " + playerScore + " to " + computerScore);
-//  } else
-//    console.log("GAME! It's a draw! " + playerScore + " to " + computerScore);
-//    console.log("Please refresh page!");
-//  }
+      scores.innerText = ('You ' + playerScore + ' Computer ' + computerScore);
+    } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+      p.textContent = 'WIN!!';
+      playerScore++;
+      scores.innerText = ('You ' + playerScore + ' Computer ' + computerScore);
+    } else if (playerSelection === 'paper' && computerSelection === 'paper') {
+      p.textContent = 'Draw!';
+    } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+      p.textContent = 'WIN!!';
+      playerScore++;  
+      scores.innerText = ('You ' + playerScore + ' Computer ' + computerScore); 
+    } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+      p.textContent = 'Loss';
+      computerScore++;
+      scores.innerText = ('You ' + playerScore + ' Computer ' + computerScore);
+    } else if (playerSelection === 'scissors' && computerSelection === 'scissors') {
+      p.textContent = 'Draw!';
+    } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+      p.textContent = 'Loss';
+      computerScore++;
+      scores.innerText = ('You ' + playerScore + ' Computer ' + computerScore);
+    } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+      p.textContent = 'WIN!!';
+      playerScore++; 
+      scores.innerText = ('You ' + playerScore + ' Computer ' + computerScore);
+    };
+
+  if (playerScore >= 5) {
+    alert('YOU WON!!!, click ok to play again!');
+    window.location.reload();
+  } else if (computerScore >= 5) {
+    alert('Sorry, you lose but you can click ok to play again...')
+    window.location.reload();
+  };
 }
-let playerScore = 0;
-let computerScore = 0;
-game();
