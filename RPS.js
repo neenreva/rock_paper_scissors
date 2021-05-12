@@ -1,66 +1,33 @@
-function computerPlay() {
-  const ranNumber = Math.ceil(Math.random() * 3);
-
-  if (ranNumber === 3) {
-    return 'rock';
-  } else if (ranNumber === 2) {
-    return 'paper';
-  } else if (ranNumber === 1) {
-    return 'scissors';
-  } else {
-    return 'Nope, not working'
-  }
-}
+const buttons = document.querySelectorAll('#btns');
+  buttons.forEach((button) => {
+    button.addEventListener('click', playRound)
+});
 
 let playerScore = 0;
 let computerScore = 0;
 
-const buttons = document.querySelectorAll('#btns');
-  buttons.forEach((button) => {
-  button.addEventListener('click', playRound)
-});
-
-const roundResults = document.querySelector('#results');
-const p = document.createElement('p');
-p.classList.add('result');
-roundResults.appendChild(p);
-const scores = document.createElement('p');
-scores.classList.add('tally');
-roundResults.appendChild(scores);
+function computerPlay() {
+  const ranNumber = Math.ceil(Math.random() * 3);
+  return ranNumber == 3 ? 'rock': ranNumber == 2 ? 'paper' : 'scissors';
+}
 
 function playRound(e) {
   const playerSelection = e.target.id;
   const computerSelection = computerPlay();
 
-   if (playerSelection === 'rock' && computerSelection === 'rock') {
-      p.textContent = 'Draw!';
-    } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-      p.textContent = 'Loss';
+   if (playerSelection == computerSelection) {
+      paraText.textContent = 'Draw!';
+    } else if ((playerSelection === 'rock' && computerSelection === 'paper') ||
+      (playerSelection === 'paper' && computerSelection === 'scissors') ||
+      (playerSelection === 'scissors' && computerSelection === 'rock')) {
+      paraText.textContent = 'Loss';
       computerScore++;
       scores.innerText = ('You ' + playerScore + ' Computer ' + computerScore);
-    } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
-      p.textContent = 'WIN!!';
+    } else if ((playerSelection === 'rock' && computerSelection === 'scissors') ||
+      (playerSelection === 'paper' && computerSelection === 'rock') ||
+      (playerSelection === 'scissors' && computerSelection === 'paper')) {
+      paraText.textContent = 'WIN!!';
       playerScore++;
-      scores.innerText = ('You ' + playerScore + ' Computer ' + computerScore);
-    } else if (playerSelection === 'paper' && computerSelection === 'paper') {
-      p.textContent = 'Draw!';
-    } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-      p.textContent = 'WIN!!';
-      playerScore++;  
-      scores.innerText = ('You ' + playerScore + ' Computer ' + computerScore); 
-    } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-      p.textContent = 'Loss';
-      computerScore++;
-      scores.innerText = ('You ' + playerScore + ' Computer ' + computerScore);
-    } else if (playerSelection === 'scissors' && computerSelection === 'scissors') {
-      p.textContent = 'Draw!';
-    } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-      p.textContent = 'Loss';
-      computerScore++;
-      scores.innerText = ('You ' + playerScore + ' Computer ' + computerScore);
-    } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-      p.textContent = 'WIN!!';
-      playerScore++; 
       scores.innerText = ('You ' + playerScore + ' Computer ' + computerScore);
     };
 
@@ -72,3 +39,11 @@ function playRound(e) {
     window.location.reload();
   };
 }
+
+const roundResults = document.querySelector('#results');
+const paraText = document.createElement('p');
+paraText.classList.add('result');
+roundResults.appendChild(paraText);
+const scores = document.createElement('p');
+scores.classList.add('tally');
+roundResults.appendChild(scores);
